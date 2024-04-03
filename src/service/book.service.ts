@@ -26,10 +26,9 @@ export class BookService {
             nullSort: 'last',
             defaultSortBy: [['id', 'DESC']],
             searchableColumns: ['title', 'writer'],
-            select: ['id', 'title', 'writer', 'coverImage', 'point', 'tags.name'],
+            select: ['id', 'title', 'writer', 'coverImage', 'point', 'tags.name', 'tags.id'],
             filterableColumns: {
-                name: [FilterOperator.EQ, FilterSuffix.NOT],
-                age: true,
+                'tags.id': [FilterOperator.EQ, FilterOperator.IN]
             },
             relations: ['tags'],
         })

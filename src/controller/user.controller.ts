@@ -1,5 +1,5 @@
 
-import { Body, Controller, Post } from "@nestjs/common";
+import { Body, Controller, Get, Post, Request } from "@nestjs/common";
 import { Public } from "src/auth/constants";
 import { User } from "src/entity/user.entity";
 import { UserRegisterDto } from "src/model/dto/userRegisterDto";
@@ -16,6 +16,11 @@ export default class UserControler {
     @Post('/register')
     async register(@Body() userRegisterDto: UserRegisterDto): Promise<User> {
         return this.userService.register(userRegisterDto)
+    }
+
+    @Get('/me')
+    async me(@Request() req) {
+        return this.userService.findOneById(req.user.id);
     }
 
 }
